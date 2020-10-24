@@ -11,11 +11,11 @@ def main():
 
 @app.route('/share_valut')
 def share_valut():
-    return render_template('share_valut')
+    return render_template('share_valut.html')
 
 
 @app.route('/history')
 def history():
-    return render_template('history')
+    return render_template('history.html')
 
 
