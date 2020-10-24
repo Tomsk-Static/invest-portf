@@ -1,18 +1,65 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <title>Portel</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <link rel="stylesheet" type="text/css" href="static/style_index.css">
+    <title>Portfel</title>
 </head>
 <body>
-    <h1>Ny sho ebat</h1>
+    <div class="container">
+        <div class="row">
+            <div class="col col-12 col-md-6">
+                <div class="card">
+                    <div class="card-header buy-header">
+                        Buy
+                    </div>
+                    <form>
+                        <div class="form-group">
+                            <label for="what_buy">Че купил</label>
+                            <input class="form-control" type="text" id="what_buy">
+
+                            <label for="how_buy">Сколько</label>
+                            <input class="form-control col-md-5 col-12" type="text" id="how_buy">
+
+                            <label for="cost_buy">По чем</label>
+                            <input class="form-control col-md-5 col-12" type="text" id="cost_buy">
+
+                        </div>
+                        <button type="submit" class="btn btn-outline-success">Базарю</button>
+                    </form>
+                </div>
+            </div>
+
+            <div class="col col-12 col-md-6">
+                <div class="card">
+                    <div class="card-header sell-header">
+                        Sell
+                    </div>
+                    <form>
+                        <div class="form-group">
+                            <label for="what_sell">Че продал</label>
+                            <input class="form-control" type="text" id="what_sell">
+
+                            <label for="how_sell">Сколько</label>
+                            <input class="form-control" type="text" id="how_sell">
+
+                            <label for="cost_sell">По чем</label>
+                            <input class="form-control" type="text" id="cost_sell">
+
+                        </div>
+                        <button type="submit" class="btn btn-outline-danger">Базарю</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
 
 
-    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></1script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></1script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></1script>
 </body>
 </html>
 </html>
