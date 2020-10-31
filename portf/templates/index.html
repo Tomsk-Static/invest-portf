@@ -1,0 +1,57 @@
+{% extends 'base.html' %}
+
+{% block title %}
+    Portfel
+{% endblock %}
+
+{% block body %}
+
+
+    <div class="row">
+        <div class="col col-12 col-md-6">
+            <div class="card">
+                <div class="card-header buy-header">
+                    Buy
+                </div>
+                <form autocomplete="off" action="/form_buy" method="post">
+                    <div class="form-group">
+                        <label for="what_buy">Че купил</label>
+                        <input class="form-control" name="active_name" type="text" id="what_buy">
+
+                        <label for="how_buy">Сколько</label>
+                        <input class="form-control col-md-3 col-12" name="count" type="text" id="how_buy">
+
+                        <label for="cost_buy">Потратил</label>
+                        <input class="form-control col-md-5 col-12" name="price" type="text" id="cost_buy">
+
+                    </div>
+                    <button type="submit" class="btn btn-outline-success">Базарю</button>
+                </form>
+            </div>
+        </div>
+
+        <div class="col col-12 col-md-6">
+            <div class="card">
+                <div class="card-header sell-header">
+                    Sell
+                </div>
+                <form autocomplete="off" action="/form_sell" method="post">
+                    <div class="form-group">
+                        <label for="what_sell">Че продал</label>
+                        <input class="form-control" name="active_name" type="text" id="what_sell">
+
+                        <label for="how_sell">Сколько</label>
+                        <input class="form-control col-12 col-md-3" name="count" type="text" id="how_sell">
+
+                        <label for="cost_sell">Получил</label>
+                        <input class="form-control col-12 col-md-5" name="profit" type="text" id="cost_sell">
+
+                    </div>
+                    <button type="submit" class="btn btn-outline-danger">Базарю</button>
+                </form>
+            </div>
+        </div>
+    </div>
+
+
+{% endblock %}
