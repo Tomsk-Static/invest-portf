@@ -5,7 +5,14 @@
 {% endblock %}
 
 {% block body %}
-
+    {% if error != None %}
+        <div class="alert alert-warning alert-dismissible fade show" role="alert">
+              <strong>Error!</strong> {{ error }}
+              <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+        </div>
+    {% endif %}
 
     <div class="row">
         <div class="col col-12 col-md-6">
@@ -21,7 +28,7 @@
                         <label for="how_buy">Сколько</label>
                         <input class="form-control col-md-3 col-12" name="count" type="text" id="how_buy">
 
-                        <label for="cost_buy">Потратил</label>
+                        <label for="cost_buy">Потратил за одну</label>
                         <input class="form-control col-md-5 col-12" name="price" type="text" id="cost_buy">
 
                     </div>
@@ -43,8 +50,8 @@
                         <label for="how_sell">Сколько</label>
                         <input class="form-control col-12 col-md-3" name="count" type="text" id="how_sell">
 
-                        <label for="cost_sell">Получил</label>
-                        <input class="form-control col-12 col-md-5" name="profit" type="text" id="cost_sell">
+                        <label for="cost_sell">Получил за одну</label>
+                        <input class="form-control col-12 col-md-5" name="price" type="text" id="cost_sell">
 
                     </div>
                     <button type="submit" class="btn btn-outline-danger">Базарю</button>

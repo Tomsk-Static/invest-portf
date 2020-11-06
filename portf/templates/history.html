@@ -1,10 +1,36 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>History</title>
-</head>
-<body>
+{% extends 'base.html' %}
 
-</body>
-</html>
+{% block title %}History{% endblock %}
+
+{% block body %}
+    <div class="table-responsive table_actives ">
+        <table class="table table-hover">
+          <thead>
+            <tr class="table-warning">
+              <th scope="col">id</th>
+              <th scope="col">Название</th>
+              <th scope="col">Цена</th>
+              <th scope="col">Количество</th>
+              <th scope="col">Выгода</th>
+              <th scope="col">Дата</th>
+            </tr>
+          </thead>
+          <tbody>
+            {% for trans in history %}
+                {% if trans.profit == None %}
+                    <tr class="table-success">
+                {% else %}
+                    <tr class="table-danger">
+                {% endif %}
+                  <td>{{ trans.id }}</td>
+                  <td>{{ trans.active_name }}</td>
+                  <td>{{ trans.price }}</td>
+                  <td>{{ trans.count }}</td>
+                  <td>{{ trans.profit }}</td>
+                  <td>{{ trans.date }}</td>
+                </tr>
+            {% endfor %}
+          </tbody>
+        </table>
+    </div>
+{% endblock %}

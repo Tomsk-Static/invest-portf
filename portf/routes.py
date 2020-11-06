@@ -1,11 +1,16 @@
 from portf import app, db
 from flask import render_template, session, request, jsonify, redirect
-from portf.models import Actives
+from portf.models import Actives, History
+from datetime import datetime
 
 
 @app.route('/')
 def main():
-    return render_template('index.html')
+    if not session.get('error'): error = None
+    else:
+        error = session['error']
+        session.pop('error', None)
+    return render_template('index.html', error=error)
 
 
 @app.route('/actives', methods=('POST', 'GET'))
@@ -43,32 +48,65 @@ def actives():
     return render_template('actives.html', actives=actives, all_actives=all_actives, error=error)
 
 
-@app.route('/history')
+@app.route('/history', methods=['GET', 'POST'])
 def history():
-    return render_template('history.html')
+    history = History.query.order_by(History.date.desc()).all()
+    return render_template('history.html', history=history)
 
-@app.route('/form_buy', methods=['GET', 'POST'])
+@app.route('/form_buy', methods=['POST'])
 def form_buy():
-    name = request.form('active_name').get()
-    count = request.form('count').get()
-    price = request.form('price').get()
+    name = request.form.get('active_name')
+    count = int(request.form.get('count'))
+    price = int(request.form.get('price'))
     if not name:
-        error = "Enter the active's name"
+        session['error'] = "Enter the active's name"
     elif not count:
-        error = "Enter the count"
+        session['error'] = "Enter the count"
     elif not price:
-        error = "Enter the price"
+        session['error'] = "Enter the price"
     else:
-        active = Actives.query.filter_by(name=name)
+        active = Actives.query.filter_by(name=name).first()
+        print(active)
         if not active:
-            error = "Active with name {} is not exist"
+            session['error'] = "Active with name {} is not exist".format(name)
         else:
-            active.count = count
-            active.price = price
-            db.session.add(active)
+            active.price = (active.price * active.count + price * count)/(active.count + count)
+            active.count += count
+            # db.session.add(active)
+            transaction = History(active_name=name, count=count, price=price, date=datetime.now())
+            db.session.add(transaction)
             db.session.commit()
-    if 'error' not in locals():
-        error = None
-    return render_template('index.html', error=error)
+    return redirect('/')
+
+
+@app.route('/form_sell', methods=['POST'])
+def form_sell():
+    name = request.form.get('active_name')
+    count = int(request.form.get('count'))
+    price = int(request.form.get('price'))
+
+    if not name:
+        session['error'] = "Enter active's name"
+    elif not count:
+        session['error'] = "Enter count"
+    elif not price:
+        session['error'] = "Enter price"
+    else:
+        active = Actives.query.filter_by(name=name).first()
+        if not active:
+            session['error'] = "Active with name {} is not exist".format(name)
+        elif active.count <= 0:
+            session['error'] = "You did not have active {}".format(name)
+        else:
+            profit = count * price - count * active.price
+            # active.price = (active.price * active.count - price * count)/(active.count - count)
+            active.count -= count
+            transaction = History(active_name=name, count=count, price=price, profit=profit, date=datetime.now())
+            db.session.add(transaction)
+            db.session.commit()
+    return redirect('/')
+
+
+
 
 
