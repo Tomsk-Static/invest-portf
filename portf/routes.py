@@ -2,6 +2,7 @@ from portf import app, db
 from flask import render_template, session, request, jsonify, redirect
 from portf.models import Actives, History
 from datetime import datetime
+import requests
 
 
 @app.route('/')
@@ -16,7 +17,6 @@ def main():
 @app.route('/actives', methods=('POST', 'GET'))
 def actives():
     if request.method == 'POST':
-        print(request.form)
         if 'id' in request.form:
             if not request.form.get('id'):
                 error = "Enter active's id"
@@ -31,14 +31,15 @@ def actives():
         else:
             active_name = request.form.get('active_name')
             ticket = request.form.get('ticket')
-            if not active_name or not ticket:
-                error = "Enter active's name and ticket"
+            type = request.form.get('type')
+            if not active_name or not ticket or not type:
+                error = "Enter active's name, ticket and type"
             elif Actives.query.filter_by(name=active_name).first():
                 error = 'Active with name {} already exists'.format(active_name)
             elif Actives.query.filter_by(ticket=ticket).first():
                 error = 'Active with ticket {} already exists'.format(ticket)
             else:
-                active = Actives(name=active_name, ticket=ticket)
+                active = Actives(name=active_name, ticket=ticket, type=type)
                 db.session.add(active)
                 db.session.commit()
     actives = Actives.query.filter(Actives.count != 0)
@@ -66,7 +67,6 @@ def form_buy():
         session['error'] = "Enter the price"
     else:
         active = Actives.query.filter_by(name=name).first()
-        print(active)
         if not active:
             session['error'] = "Active with name {} is not exist".format(name)
         else:
@@ -106,7 +106,21 @@ def form_sell():
             db.session.commit()
     return redirect('/')
 
+@app.route('/get_actives', methods=['GET', 'POST'])
+def get_actives(type):
+    return Actives.query.filter(Actives.type==type).all()
 
+
+@app.route('/price', methods=['GET', 'POST'])
+def crypto_price():
+    req = dict()
+    all_actives = get_actives('crypto')
+    price_url = 'https://api.binance.com/api/v3/ticker/24hr'
+    params = {'symbol': ''}
+    for active in all_actives:
+        params['symbol'] = str(active.ticket).upper() + 'USDT'
+        req[active.name] = (requests.get(price_url, params=params).json()['lastPrice'])
+    return req
 
 
 
