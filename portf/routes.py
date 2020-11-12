@@ -119,7 +119,13 @@ def crypto_price():
     params = {'symbol': ''}
     for active in all_actives:
         params['symbol'] = str(active.ticket).upper() + 'USDT'
-        req[active.name] = (requests.get(price_url, params=params).json()['lastPrice'])
+        price = requests.get(price_url, params=params).json()['lastPrice']
+        price = price.split('.')
+        try:
+            price[1] = price[1][:3]
+        except:
+            pass
+        req[active.name] = '.'.join(price)
     return req
 
 

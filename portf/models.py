@@ -12,9 +12,14 @@ class Actives(db.Model):
     history_orders = db.relationship('History', backref='active')
 
     def __repr__(self):
-        return {'active': self.name, 'ticket': self.ticket,
-                'id': self.id, 'count': self.count,
-                'price': self.price, 'type': self.type}
+        return "active: {}, ticket: {}, id: {}, count: {}, price: {}, type: {}".format(
+            self.name,
+            self.ticket,
+            self.id,
+            self.count,
+            self.price,
+            self.type
+        )
 
 
 class History(db.Model):
@@ -26,9 +31,14 @@ class History(db.Model):
     date = db.Column(db.DateTime, nullable=False)
 
     def __repr__(self):
-        return {'id': self.id, 'name': self.active_name,
-                'price': self.price, 'profit': self.profit,
-                'count': self.count, 'date': self.date}
+        return 'id: {}, active_name: {}, count: {}, price: {}, profit: {}, date: {}'.format(
+            self.id,
+            self.active_name,
+            self.count,
+            self.price,
+            self.profit,
+            self.date
+        )
 
 
 

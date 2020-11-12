@@ -59,7 +59,7 @@
                   <td>{{ active.name }}</td>
                   <td>{{ active.ticket }}</td>
                   <td>{{ active.price }}</td>
-                  <td>0.00</td>
+                  <td id={{ 'actual_' + active.name }}>0.00</td>
                   <td>{{ active.count }}</td>
                   <td>{{ active.type }}</td>
                 </tr>
@@ -88,7 +88,7 @@
                   <td>{{ active.name }}</td>
                   <td>{{ active.ticket }}</td>
                   <td>{{ active.price }}</td>
-                  <td id={{ 'actual_' + active.name }}>0.00</td>
+                  <td id={{ 'all_actual_' + active.name }}>0.00</td>
                   <td>{{ active.count }}</td>
                   <td>{{ active.type }}</td>
                 </tr>
@@ -101,7 +101,10 @@
     <div id="app">
 
     </div>
-
+    <script src="https://code.highcharts.com/highcharts.js"></script>
+    <script src="https://code.highcharts.com/modules/exporting.js"></script>
+    <script src="https://code.highcharts.com/modules/export-data.js"></script>
+    <script src="https://code.highcharts.com/modules/accessibility.js"></script>
     <script>
 
 
@@ -122,12 +125,13 @@
         function add_actual_prices(prices) {
             $.each(prices, function(key, value) {
                 $('#actual_' + key).html(value);
+                $('#all_actual_' + key).html(value);
             });
         }
 
 
         $(document).ready(function(){
-            setInterval('add_actual_prices(app.price.data)', 5000);
+            setTimeout('add_actual_prices(app.price.data)', 5000);
         });
 
     </script>
