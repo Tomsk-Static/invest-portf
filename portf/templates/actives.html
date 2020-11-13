@@ -54,12 +54,17 @@
           </thead>
           <tbody>
             {% for active in actives %}
-                <tr>
+                <tr class="clickable-row" data-toggle="modal" data-target="#modal_for_{{ active.name }}" id="chart_{{ active.name }}">
                   <td>{{ active.id }}</td>
-                  <td>{{ active.name }}</td>
+
+                  <td>
+                      <!--<a data-toggle="modal" data-target="#modal_for_{{ active.name }}" id="chart_{{ active.name }}">-->
+                        {{ active.name }}
+
+                  </td>
                   <td>{{ active.ticket }}</td>
                   <td>{{ active.price }}</td>
-                  <td id={{ 'actual_' + active.name }}>0.00</td>
+                  <td id="actual_{{ active.name }}">0.00</td>
                   <td>{{ active.count }}</td>
                   <td>{{ active.type }}</td>
                 </tr>
@@ -88,7 +93,7 @@
                   <td>{{ active.name }}</td>
                   <td>{{ active.ticket }}</td>
                   <td>{{ active.price }}</td>
-                  <td id={{ 'all_actual_' + active.name }}>0.00</td>
+                  <td id="all_actual_{{ active.name }}">0.00</td>
                   <td>{{ active.count }}</td>
                   <td>{{ active.type }}</td>
                 </tr>
@@ -97,15 +102,88 @@
         </table>
     </div>
 
+
+
+    <!-- Modal -->
+    {% for active in actives %}
+        <div class="modal fade" id="modal_for_{{ active.name }}" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+          <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h5 class="modal-title">Modal title</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                  <span aria-hidden="true">&times;</span>
+                </button>
+              </div>
+              <div id="chart_for_{{ active.name }}" class="modal-body">
+
+                        show
+
+              </div>
+              <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-primary">Save changes</button>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <script>
+
+            $("#chart_{{ active.name }}").click(
+                function () {
+                    $.ajax({
+                        url: '/data_for_chart/{{ active.ticket }}',
+                        type: 'GET',
+                        success: function(data) {
+
+                            console.log(data.prices);
+                            console.log(data.timestamps);
+
+                            createChart(data.prices, data.timestamps, 'chart_for_{{ active.name }}');
+
+
+                        }
+                    });
+                });
+
+        </script>
+    {% endfor %}
+
+
     {% raw %}
     <div id="app">
 
     </div>
-    <script src="https://code.highcharts.com/highcharts.js"></script>
-    <script src="https://code.highcharts.com/modules/exporting.js"></script>
-    <script src="https://code.highcharts.com/modules/export-data.js"></script>
-    <script src="https://code.highcharts.com/modules/accessibility.js"></script>
+
+<script src="https://code.highcharts.com/stock/highstock.js"></script>
+<script src="https://code.highcharts.com/stock/modules/data.js"></script>
+<script src="https://code.highcharts.com/stock/modules/exporting.js"></script>
+<script src="https://code.highcharts.com/stock/modules/export-data.js"></script>
     <script>
+
+        createChart = function (priceData, dates, modalName) {
+            console.log('poehali!!!');
+            Highcharts.chart(modalName, {
+
+                title: {
+                    text: modalName
+                },
+                xAxis: {
+                    categories: dates
+                },
+                yAxis: {
+                    title: {
+                        text: 'Price'
+                    }
+                },
+                series: [{
+
+                    data: priceData
+                }]
+            });
+        };
+
 
 
         app = new Vue({
@@ -130,8 +208,9 @@
         }
 
 
+
         $(document).ready(function(){
-            setTimeout('add_actual_prices(app.price.data)', 5000);
+            setTimeout('add_actual_prices(app.price.data)', 1000);
         });
 
     </script>

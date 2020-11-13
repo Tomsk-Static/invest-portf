@@ -3,6 +3,7 @@ from flask import render_template, session, request, jsonify, redirect
 from portf.models import Actives, History
 from datetime import datetime
 import requests
+import datetime
 
 
 @app.route('/')
@@ -12,6 +13,11 @@ def main():
         error = session['error']
         session.pop('error', None)
     return render_template('index.html', error=error)
+
+
+@app.route('/go_to_actives')
+def go_to_actives():
+    return redirect('/actives')
 
 
 @app.route('/actives', methods=('POST', 'GET'))
@@ -28,6 +34,8 @@ def actives():
                 else:
                     db.session.delete(active)
                     db.session.commit()
+                    session.pop('actual_prices', None)
+                    session.modified = True
         else:
             active_name = request.form.get('active_name')
             ticket = request.form.get('ticket')
@@ -42,6 +50,8 @@ def actives():
                 active = Actives(name=active_name, ticket=ticket, type=type)
                 db.session.add(active)
                 db.session.commit()
+                session.pop('actual_prices', None)
+                session.modified = True
     actives = Actives.query.filter(Actives.count != 0)
     all_actives = Actives.query.all()
     if 'error' not in locals():
@@ -53,6 +63,7 @@ def actives():
 def history():
     history = History.query.order_by(History.date.desc()).all()
     return render_template('history.html', history=history)
+
 
 @app.route('/form_buy', methods=['POST'])
 def form_buy():
@@ -73,7 +84,7 @@ def form_buy():
             active.price = (active.price * active.count + price * count)/(active.count + count)
             active.count += count
             # db.session.add(active)
-            transaction = History(active_name=name, count=count, price=price, date=datetime.now())
+            transaction = History(active_name=name, count=count, price=price, date=datetime.datetime.now())
             db.session.add(transaction)
             db.session.commit()
     return redirect('/')
@@ -101,20 +112,27 @@ def form_sell():
             profit = count * price - count * active.price
             # active.price = (active.price * active.count - price * count)/(active.count - count)
             active.count -= count
-            transaction = History(active_name=name, count=count, price=price, profit=profit, date=datetime.now())
+            transaction = History(active_name=name, count=count, price=price, profit=profit, date=datetime.datetime.now())
             db.session.add(transaction)
             db.session.commit()
     return redirect('/')
 
+
 @app.route('/get_actives', methods=['GET', 'POST'])
-def get_actives(type):
-    return Actives.query.filter(Actives.type==type).all()
+def get_actives(type, amount='all'):
+    if amount == 'all':
+        return Actives.query.filter(Actives.type==type).all()
+    elif amount == 'bought':
+        return Actives.query.filter(Actives.type==type, Actives.count > 0).all()
 
 
 @app.route('/price', methods=['GET', 'POST'])
 def crypto_price():
+    if session.get('actual_prices'):
+        print('session is not null')
+        return session['actual_prices']
     req = dict()
-    all_actives = get_actives('crypto')
+    all_actives = get_actives('crypto', 'bought')
     price_url = 'https://api.binance.com/api/v3/ticker/24hr'
     params = {'symbol': ''}
     for active in all_actives:
@@ -126,7 +144,36 @@ def crypto_price():
         except:
             pass
         req[active.name] = '.'.join(price)
+    session['actual_prices'] = req
     return req
 
 
+def get_sparkline(active, days=10):
+    prices = {'prices': [], 'timestamps': []}
+    date = datetime.datetime.today() - datetime.timedelta(days=days)
+    date = date.isoformat('T') + 'Z'
+
+    api_url = 'https://api.nomics.com/v1/currencies/sparkline'
+    api_key = '3264cf50e622153fa78146f301941e86'
+    api_url = api_url + '?key=' + api_key
+
+    params = {'ids': active.upper(),
+              'start': date}
+    req = requests.get(api_url, params=params).json()
+
+    prices['prices'] = [float(price[:7]) if len(price) >= 7 else float(price) for price in req[0]['prices']]
+    prices['timestamps'] = [time[:10] if len (time) >= 10 else time for time in req[0]['timestamps']]
+
+    return prices
+
+
+@app.route('/data_for_chart/<string:ticket>', methods=['GET', 'POST'])
+def data_for_chart(ticket):
+    active = Actives.query.filter(Actives.ticket == ticket).first()
+    if active.type == 'crypto':
+        prices = get_sparkline(ticket)
+
+    else: prices = {'prices': [], 'timestamps': []}
+    print(prices)
+    return prices
 

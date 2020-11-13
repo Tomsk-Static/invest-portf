@@ -9,7 +9,7 @@ class Actives(db.Model):
     count = db.Column(db.Float, nullable=True, default=0)
     price = db.Column(db.Float, nullable=True, default=0)
     type = db.Column(db.String(10), nullable=False)
-    history_orders = db.relationship('History', backref='active')
+    history_orders = db.relationship('History', backref='active', cascade="all, delete-orphan")
 
     def __repr__(self):
         return "active: {}, ticket: {}, id: {}, count: {}, price: {}, type: {}".format(
