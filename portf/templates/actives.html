@@ -163,7 +163,6 @@
     <script>
 
         createChart = function (priceData, dates, modalName) {
-            console.log('poehali!!!');
             Highcharts.chart(modalName, {
 
                 title: {
@@ -193,7 +192,7 @@
             },
             mounted () {
                 axios
-                .get('/price')
+                .get('/actual_prices')
                 .then( response => (this.price = response))
 
 
@@ -202,15 +201,15 @@
 
         function add_actual_prices(prices) {
             $.each(prices, function(key, value) {
-                $('#actual_' + key).html(value);
-                $('#all_actual_' + key).html(value);
+                $('#actual_' + key).html(parseFloat(value));
+                $('#all_actual_' + key).html(parseFloat(value));
             });
         }
 
 
 
         $(document).ready(function(){
-            setTimeout('add_actual_prices(app.price.data)', 1000);
+            setTimeout('add_actual_prices(app.price.data)', 3000);
         });
 
     </script>

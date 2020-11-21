@@ -3,18 +3,18 @@
   <component name="BookmarkManager">
     <bookmark url="file://$PROJECT_DIR$/portf/models.py" line="6" />
     <bookmark url="file://$PROJECT_DIR$/portf/templates/actives.html" line="17" />
-    <bookmark url="file://$PROJECT_DIR$/portf/test.py" line="15" mnemonic="9" />
+    <bookmark url="file://$PROJECT_DIR$/portf/test.py" line="11" mnemonic="9" />
+    <bookmark url="file://$PROJECT_DIR$/portf/test.py" line="5" />
+    <bookmark url="file://$PROJECT_DIR$/portf/test.py" line="21" />
   </component>
   <component name="ChangeListManager">
     <list default="true" id="46efc07b-d99f-4cc9-91c5-a5614ae07982" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/portf/actives.db" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/portf/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/portf/models.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/portf/actives.db" beforeDir="false" afterPath="$PROJECT_DIR$/portf/actives.db" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/portf/routes.py" beforeDir="false" afterPath="$PROJECT_DIR$/portf/routes.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/portf/static/vue.js" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/portf/templates/actives.html" beforeDir="false" afterPath="$PROJECT_DIR$/portf/templates/actives.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/portf/templates/base.html" beforeDir="false" afterPath="$PROJECT_DIR$/portf/templates/base.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/portf/templates/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/portf/templates/index.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/portf/test.py" beforeDir="false" afterPath="$PROJECT_DIR$/portf/test.py" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -27,8 +27,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/portf/models.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1">
-              <caret line="17" column="20" lean-forward="true" selection-start-line="17" selection-start-column="20" selection-end-line="17" selection-end-column="20" />
+            <state relative-caret-position="340">
+              <caret line="17" column="20" selection-start-line="17" selection-start-column="20" selection-end-line="17" selection-end-column="20" />
               <folding>
                 <element signature="e#0#20#0" expanded="true" />
               </folding>
@@ -48,8 +48,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/portf/templates/base.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="460">
-              <caret line="23" column="49" selection-start-line="23" selection-start-column="49" selection-end-line="23" selection-end-column="49" />
+            <state relative-caret-position="360">
+              <caret line="21" column="19" lean-forward="true" selection-start-line="21" selection-start-column="19" selection-end-line="21" selection-end-column="19" />
             </state>
           </provider>
         </entry>
@@ -57,10 +57,10 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/portf/templates/actives.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="300">
-              <caret line="56" column="105" selection-start-line="56" selection-start-column="105" selection-end-line="56" selection-end-column="105" />
+            <state relative-caret-position="426">
+              <caret line="204" column="64" selection-start-line="204" selection-start-column="64" selection-end-line="204" selection-end-column="64" />
               <folding>
-                <element signature="e#4301#4308#1" expanded="true" />
+                <element signature="e#4400#4407#1" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -70,7 +70,7 @@
         <entry file="file://$PROJECT_DIR$/portf/templates/history.html">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="540">
-              <caret line="27" column="36" lean-forward="true" selection-start-line="27" selection-start-column="36" selection-end-line="27" selection-end-column="37" />
+              <caret line="27" column="36" selection-start-line="27" selection-start-column="36" selection-end-line="27" selection-end-column="37" />
             </state>
           </provider>
         </entry>
@@ -78,7 +78,7 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/portf/templates/index.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1220">
+            <state relative-caret-position="626">
               <caret line="61" selection-start-line="61" selection-end-line="61" />
             </state>
           </provider>
@@ -87,10 +87,10 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/portf/test.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="100">
-              <caret line="5" selection-start-line="5" selection-end-line="5" selection-end-column="34" />
+            <state relative-caret-position="615">
+              <caret line="39" column="39" selection-start-line="39" selection-start-column="39" selection-end-line="39" selection-end-column="39" />
               <folding>
-                <element signature="e#0#15#0" expanded="true" />
+                <element signature="e#0#21#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -99,8 +99,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/portf/routes.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="164">
-              <caret line="141" column="12" lean-forward="true" selection-start-line="141" selection-start-column="12" selection-end-line="141" selection-end-column="12" />
+            <state relative-caret-position="626">
+              <caret line="155" lean-forward="true" selection-start-line="155" selection-end-line="155" />
               <folding>
                 <element signature="e#0#25#0" expanded="true" />
               </folding>
@@ -143,20 +143,19 @@
         <option value="$PROJECT_DIR$/portf/templates/history.html" />
         <option value="$PROJECT_DIR$/portf/templates/indexvue.html" />
         <option value="$PROJECT_DIR$/portf/templates/price.html" />
-        <option value="$PROJECT_DIR$/portf/test.py" />
-        <option value="$PROJECT_DIR$/portf/templates/base.html" />
         <option value="$PROJECT_DIR$/portf/templates/index.html" />
         <option value="$PROJECT_DIR$/portf/models.py" />
+        <option value="$PROJECT_DIR$/portf/templates/base.html" />
+        <option value="$PROJECT_DIR$/portf/test.py" />
         <option value="$PROJECT_DIR$/portf/routes.py" />
         <option value="$PROJECT_DIR$/portf/templates/actives.html" />
       </list>
     </option>
   </component>
   <component name="ProjectFrameBounds">
-    <option name="x" value="1912" />
-    <option name="y" value="-8" />
-    <option name="width" value="976" />
-    <option name="height" value="1096" />
+    <option name="x" value="-7" />
+    <option name="width" value="974" />
+    <option name="height" value="1207" />
   </component>
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="ProjectView">
@@ -246,7 +245,7 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="Python.app">
+  <component name="RunManager" selected="Python.test">
     <configuration name="app" type="PythonConfigurationType" factoryName="Python" temporary="true">
       <module name="Invest_portf" />
       <option name="INTERPRETER_OPTIONS" value="" />
@@ -363,7 +362,7 @@
     </todo-panel>
   </component>
   <component name="ToolWindowManager">
-    <frame x="1912" y="-8" width="976" height="1096" extended-state="0" />
+    <frame x="-7" y="0" width="974" height="1207" extended-state="0" />
     <editor active="true" />
     <layout>
       <window_info content_ui="combo" id="Project" order="0" weight="0.15437302" />
@@ -371,15 +370,15 @@
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" weight="0.32963988" />
-      <window_info active="true" anchor="bottom" id="Run" order="2" visible="true" weight="0.23987539" />
+      <window_info active="true" anchor="bottom" id="Run" order="2" visible="true" weight="0.22346368" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
       <window_info anchor="bottom" id="TODO" order="6" weight="0.2437673" />
       <window_info anchor="bottom" id="Version Control" order="7" weight="0.3281412" />
-      <window_info anchor="bottom" id="Terminal" order="8" weight="0.25129804" />
+      <window_info anchor="bottom" id="Terminal" order="8" weight="0.16158818" />
       <window_info anchor="bottom" id="Event Log" order="9" side_tool="true" />
-      <window_info anchor="bottom" id="Python Console" order="10" weight="0.3281412" />
+      <window_info anchor="bottom" id="Python Console" order="10" weight="0.32774675" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
@@ -432,6 +431,17 @@
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/portf/templates/price.html" />
+    <entry file="file://$USER_HOME$/OneDrive/Рабочий стол/iss_simple_client.py" />
+    <entry file="file://$USER_HOME$/OneDrive/Рабочий стол/rtk-it_task/test.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="220">
+          <caret line="11" column="28" lean-forward="true" selection-start-line="11" selection-start-column="28" selection-end-line="11" selection-end-column="28" />
+          <folding>
+            <element signature="e#0#15#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/app.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="100">
@@ -441,61 +451,61 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/portf/templates/base.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="460">
-          <caret line="23" column="49" selection-start-line="23" selection-start-column="49" selection-end-line="23" selection-end-column="49" />
+        <state relative-caret-position="360">
+          <caret line="21" column="19" lean-forward="true" selection-start-line="21" selection-start-column="19" selection-end-line="21" selection-end-column="19" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/portf/templates/index.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="626">
+          <caret line="61" selection-start-line="61" selection-end-line="61" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/portf/test.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="615">
+          <caret line="39" column="39" selection-start-line="39" selection-start-column="39" selection-end-line="39" selection-end-column="39" />
+          <folding>
+            <element signature="e#0#21#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/portf/models.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1">
-          <caret line="17" column="20" lean-forward="true" selection-start-line="17" selection-start-column="20" selection-end-line="17" selection-end-column="20" />
+        <state relative-caret-position="340">
+          <caret line="17" column="20" selection-start-line="17" selection-start-column="20" selection-end-line="17" selection-end-column="20" />
           <folding>
             <element signature="e#0#20#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/portf/templates/history.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="540">
+          <caret line="27" column="36" selection-start-line="27" selection-start-column="36" selection-end-line="27" selection-end-column="37" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/portf/routes.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="164">
-          <caret line="141" column="12" lean-forward="true" selection-start-line="141" selection-start-column="12" selection-end-line="141" selection-end-column="12" />
+        <state relative-caret-position="626">
+          <caret line="155" lean-forward="true" selection-start-line="155" selection-end-line="155" />
           <folding>
             <element signature="e#0#25#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/portf/test.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="100">
-          <caret line="5" selection-start-line="5" selection-end-line="5" selection-end-column="34" />
-          <folding>
-            <element signature="e#0#15#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/portf/templates/index.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1220">
-          <caret line="61" selection-start-line="61" selection-end-line="61" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/portf/templates/history.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="540">
-          <caret line="27" column="36" lean-forward="true" selection-start-line="27" selection-start-column="36" selection-end-line="27" selection-end-column="37" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/portf/templates/actives.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="300">
-          <caret line="56" column="105" selection-start-line="56" selection-start-column="105" selection-end-line="56" selection-end-column="105" />
+        <state relative-caret-position="426">
+          <caret line="204" column="64" selection-start-line="204" selection-start-column="64" selection-end-line="204" selection-end-column="64" />
           <folding>
-            <element signature="e#4301#4308#1" expanded="true" />
+            <element signature="e#4400#4407#1" expanded="true" />
           </folding>
         </state>
       </provider>
