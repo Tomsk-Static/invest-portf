@@ -9,3 +9,16 @@
 .nav-container {
     margin-bottom: 10px;
 }
+
+.actual_price {
+    margin: 16px;
+}
+
+.modal-content {
+    border: 0;
+}
+
+.modal-header {
+    background-color: #ff8c66;
+    border: 0;
+}

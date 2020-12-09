@@ -5,6 +5,8 @@
 {% endblock %}
 
 {% block body %}
+    <link rel="stylesheet" href="{{ url_for('static', filename='style_actives.css') }}">
+
     {% if error != None %}
         <div class="alert alert-warning alert-dismissible fade show" role="alert">
               <strong>Error!</strong> {{ error }}
@@ -39,135 +41,83 @@
         </div>
       </div>
     </form>
-    <div class="table-responsive table_actives ">
+
+    {% raw %}
+    <div id="app">
+        <div class="table-responsive table_actives">
         <table class="table table-hover table-dark">
           <thead>
             <tr>
-              <th scope="col">id</th>
+              <th scope="col">АйДи</th>
               <th scope="col">Название</th>
-              <th scope="col">Тикет </th>
-              <th scope="col">Ср. покупочная цена</th>
-              <th scope="col">Текущая цена</th>
-              <th scope="col">Количество</th>
+              <th scope="col">Тикер</th>
+              <th scope="col">Цена</th>
+              <th scope="col">Кол-во</th>
               <th scope="col">Тип</th>
             </tr>
           </thead>
           <tbody>
-            {% for active in actives %}
-                <tr class="clickable-row" data-toggle="modal" data-target="#modal_for_{{ active.name }}" id="chart_{{ active.name }}">
-                  <td>{{ active.id }}</td>
-
-                  <td>
-                      <!--<a data-toggle="modal" data-target="#modal_for_{{ active.name }}" id="chart_{{ active.name }}">-->
-                        {{ active.name }}
-
-                  </td>
-                  <td>{{ active.ticket }}</td>
-                  <td>{{ active.price }}</td>
-                  <td id="actual_{{ active.name }}">0.00</td>
-                  <td>{{ active.count }}</td>
-                  <td>{{ active.type }}</td>
-                </tr>
-            {% endfor %}
-          </tbody>
-        </table>
-    </div>
-
-    <div class="table-responsive table_all_actives">
-        <table class="table table-hover table-dark">
-          <thead>
-            <tr>
-              <th scope="col">id</th>
-              <th scope="col">Название</th>
-              <th scope="col">Тикет </th>
-              <th scope="col">Ср. покупочная цена</th>
-              <th scope="col">Текущая цена</th>
-              <th scope="col">Количество</th>
-              <th scope="col">Тип</th>
-            </tr>
-          </thead>
-          <tbody>
-            {% for active in all_actives %}
-                <tr>
+                <tr class="clickable-row"
+                    v-for="active in actives.data"
+                    @id="'active_' + active.name.toLowerCase()"
+                    @click="modalCharts(active.ticket)">
                   <td>{{ active.id }}</td>
                   <td>{{ active.name }}</td>
                   <td>{{ active.ticket }}</td>
                   <td>{{ active.price }}</td>
-                  <td id="all_actual_{{ active.name }}">0.00</td>
                   <td>{{ active.count }}</td>
                   <td>{{ active.type }}</td>
                 </tr>
-            {% endfor %}
           </tbody>
         </table>
-    </div>
+        </div>
 
 
 
-    <!-- Modal -->
-    {% for active in actives %}
-        <div class="modal fade" id="modal_for_{{ active.name }}" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+        <div class="modal fade modal_my" id="modal_for_charts" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
           <div class="modal-dialog modal-dialog-centered" role="document">
             <div class="modal-content">
+              <div v-if="Object.keys(actual_price)[0] == 'name'" class="text-center">
+                <div  class="spinner-grow m-1" role="status"></div>
+              </div>
+              <div v-else>
               <div class="modal-header">
-                <h5 class="modal-title">Modal title</h5>
+                <h4 class="modal-title">{{ Object.keys(actual_price)[0] }}</h4>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                   <span aria-hidden="true">&times;</span>
                 </button>
               </div>
-              <div id="chart_for_{{ active.name }}" class="modal-body">
-
-                        show
-
+              <h5 class="actual_price">{{ parseFloat(Object.values(actual_price)[0]).toFixed(2) }}</h5>
               </div>
-              <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                <button type="button" class="btn btn-primary">Save changes</button>
-              </div>
+              <div class="modal-body" id="chart"></div>
             </div>
           </div>
         </div>
-
-        <script>
-
-            $("#chart_{{ active.name }}").click(
-                function () {
-                    $.ajax({
-                        url: '/data_for_chart/{{ active.ticket }}',
-                        type: 'GET',
-                        success: function(data) {
-
-                            console.log(data.prices);
-                            console.log(data.timestamps);
-
-                            createChart(data.prices, data.timestamps, 'chart_for_{{ active.name }}');
-
-
-                        }
-                    });
-                });
-
-        </script>
-    {% endfor %}
-
-
-    {% raw %}
-    <div id="app">
-
     </div>
+
 
 <script src="https://code.highcharts.com/stock/highstock.js"></script>
 <script src="https://code.highcharts.com/stock/modules/data.js"></script>
 <script src="https://code.highcharts.com/stock/modules/exporting.js"></script>
 <script src="https://code.highcharts.com/stock/modules/export-data.js"></script>
-    <script>
+<script>
 
-        createChart = function (priceData, dates, modalName) {
-            Highcharts.chart(modalName, {
+createChart = function (priceData, dates) {
+            Highcharts.chart('chart', {
 
-                title: {
-                    text: modalName
+                chart: {
+
                 },
+
+                title: 'Chart',
+
+                plotOptions: {
+                    series: {
+                        color: '#cc0000'
+                    }
+
+                },
+
                 xAxis: {
                     categories: dates
                 },
@@ -183,19 +133,47 @@
             });
         };
 
-
-
         app = new Vue({
             el: '#app',
-            data () {
-               return { price: null }
+
+            data: {
+                actual_price: {'name': 'price'},
+
+                actives: {
+                    name: null,
+                    price: null
+                },
+
+                chartA: {
+                    prices: null,
+                    timestamps: null
+                }
             },
-            mounted () {
-                axios
-                .get('/actual_prices')
-                .then( response => (this.price = response))
+
+            beforeCreate: function() {
+                 axios
+                .get('/get_actives/all_all')
+                .then( response => (this.actives = response));
+            },
+
+            methods: {
+                modalCharts(ticket) {
+                    console.log(ticket);
+                    $('#modal_for_charts').modal();
+
+                    axios
+                    .get('/data_for_chart/' + ticket.toLowerCase())
+                    .then( function(response) {
+                        chartA = response.data;
+                        createChart(chartA.prices, chartA.timestamps);
+                    });
+
+                    axios
+                    .get('/get_actual_price/' + ticket.toLowerCase())
+                    .then( response => (this.actual_price = response.data));
 
 
+                }
             }
         })
 
@@ -208,12 +186,8 @@
 
 
 
-        $(document).ready(function(){
-            setTimeout('add_actual_prices(app.price.data)', 3000);
-        });
-
     </script>
-    {% endraw %}
+{% endraw %}
 {% endblock %}
 
 
